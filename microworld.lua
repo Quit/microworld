@@ -106,9 +106,10 @@ end
 --
 function MicroWorld:place_entity(alias, x, z, options)
    local entity = self:create_entity(alias, options)
-   local force_iconic = options and not options.full_size
+   options = options or {}
+   options.force_iconic = options and not options.full_size
 
-   radiant.terrain.place_entity(entity, Point3(x, 1, z), { force_iconic = force_iconic })
+   radiant.terrain.place_entity(entity, Point3(x, 1, z), options)
    return entity
 end
 
